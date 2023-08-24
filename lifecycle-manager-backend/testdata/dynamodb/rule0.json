@@ -1,0 +1,26 @@
+{
+	"RuleID": {
+	  "S": "9ff970b8-8c0a-473c-bf56-31dc9f484cff"
+	},
+	"Set": {
+	  "S": "Dynamic Credit Limit"
+	},
+	"Name": {
+	  "S": "Initial KYC Check"
+	},
+	"Description": {
+	  "S": "If user passes KYC, set initial limit to $100; else, set initial limit to $0"
+	},
+	"Active": {
+	  "BOOL": true
+	},
+	"Salience":{
+	  "S": "100"
+	},
+	"When": {
+	  "S": "kyc_outcome.S == \"APPROVED\""
+	},
+	"Then": {
+	  "S": "creditLimit.N = 10000; Retract(\"KYCCheck\");"
+	}
+}

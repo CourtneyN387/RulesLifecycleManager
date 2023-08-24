@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  rlm:
+    container_name: rlm
+    ports:
+      - "8100:8100"
+    networks:
+      - default
+    image: rlm:${APP_VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      dynamodb:
+        condition: service_started
+      dynamodb-view:
+        condition: service_started
+    entrypoint: /app/rlm
+    environment:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+  dynamodb:
+    container_name: dynamodb
+    image: amazon/dynamodb-local:1.18.0
+    ports:
+      - "8000:8000"
+    networks:
+      - default
+  dynamodb-view:
+    container_name: dynamodb-view
+    image: aaronshaf/dynamodb-admin:4.4.0
+    ports:
+      - "8001:8001"
+    networks:
+      - default
+    environment:
+      DYNAMO_ENDPOINT: http://dynamodb:8000
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+networks: 
+  default: 
+    external: 
+      name: local
+
+
