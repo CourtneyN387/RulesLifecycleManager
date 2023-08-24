@@ -1,0 +1,31 @@
+[
+    {
+      "Ruleset": "Dynamic Credit Limit",
+      "Name": "Initial",
+      "Description": "If user passes KYC, set initial limit to $100; else, set initial limit to $0",
+      "Active": "Yes",
+      "ID": "dcl-000"
+    },
+    {
+      "Ruleset": "Dynamic Credit Limit",
+      "Name": "Repayment 1",
+      "Description": "If user withdraws >50% credit limit and repays it in full once, graduate credit limit to $200",
+      "Active": "Yes",
+      "ID": "dcl-001"
+    },
+    {
+      "Ruleset": "Dynamic Credit Limit",
+      "Name": "Repayment 2",
+      "Description": "If user withdraws >50% credit limit and repays it in full again, graduate credit limit to $400",
+      "Active": "Yes",
+      "ID": "dcl-002"
+    },
+    {
+      "Ruleset": "Dynamic Credit Limit",
+      "Name": "Repayment 3",
+      "Description": "If user withdraws >50% credit limit and repays it in full once, graduate credit limit to $500",
+      "Active": "Yes",
+      "ID": "dcl-003"
+    }
+  ]
+  
